@@ -368,3 +368,73 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
   .hours-card,.address-card{flex-direction:row;}
   .svc-actions{flex-direction:column;}
 }
+
+/* ══════════════════════════════════════
+   OFFER CARD — Mobile Responsive Patches
+   ══════════════════════════════════════ */
+
+/* Fix hover border-radius on desktop for both LTR & RTL */
+.offer-card:hover .svc-media,
+[dir="ltr"] .offer-card:hover .svc-media {
+  border-radius: var(--r) 0 0 var(--r);
+}
+[dir="rtl"] .offer-card:hover .svc-media {
+  border-radius: 0 var(--r) var(--r) 0;
+}
+
+/* ══════════════════════════════════════
+   OFFER CARD — Full Responsive Coverage
+   ══════════════════════════════════════ */
+
+/* ≤ 900px: stack vertically */
+@media (max-width: 900px) {
+  .offer-card { flex-direction: column; overflow: hidden; }
+
+  .offer-card .svc-media {
+    width: 100% !important; height: 240px; min-height: unset;
+    border-radius: var(--r) var(--r) 0 0 !important;
+    flex: none;
+  }
+  .offer-card .svc-media::after {
+    border-radius: var(--r) var(--r) 0 0 !important;
+  }
+  /* Ribbon & price badge go back inside the image */
+  .offer-ribbon {
+    inset-inline-start: 14px !important;
+    inset-inline-end: auto !important;
+    top: 14px !important;
+  }
+  [dir="rtl"] .offer-ribbon {
+    inset-inline-start: auto !important;
+    inset-inline-end: 14px !important;
+  }
+  /* Fix hover border-radius for stacked layout */
+  .offer-card:hover .svc-media {
+    border-radius: var(--r) var(--r) 0 0 !important;
+  }
+  .offer-card .svc-body { padding: 20px 20px 22px; }
+  .offer-card .svc-desc { max-width: 100%; font-size: 14px; }
+}
+
+/* ≤ 600px: tighten body + stack actions */
+@media (max-width: 600px) {
+  .offer-card .svc-media { height: 210px; }
+  .offer-card-title { font-size: 20px; }
+  .offer-card .svc-actions { flex-direction: column; }
+  .offer-card .svc-actions .pill-btn,
+  .offer-card .svc-actions .btn-glow {
+    width: 100%; height: 2.8em; min-width: 0;
+  }
+}
+
+/* ≤ 380px: very small phones */
+@media (max-width: 380px) {
+  .offer-card .svc-media { height: 180px; }
+  .offer-card-title { font-size: 17px; }
+  .offer-card .svc-body { padding: 14px 14px 18px; }
+  .tier-chip { padding: 5px 10px; font-size: 11.5px; }
+  .svc-actions { flex-direction: column; }
+  .svc-actions .pill-btn, .svc-actions .btn-glow {
+    width: 100%; min-width: 0;
+  }
+}
