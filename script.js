@@ -5,7 +5,7 @@ const CONFIG = {
   whatsappNumber: "201041616442",
   facebook:  "https://facebook.com/sola.skincare",
   instagram: "https://instagram.com/sola.skincare",
-  phone:     "+20 1041616442",
+  phone:     "+20 201041616442",
   email:     "hello@solaskincare.com",
 };
 
@@ -350,9 +350,9 @@ function renderOffer(svc){
       <img src="${svc.image}" alt="${svc.name[lang]}" loading="lazy">
       <div class="svc-price-badge">${svc.price} ${t("currency")}</div>
     </div>
-    <div class="offer-ribbon">🌟 ${t("offerLabel")}</div>
     <div class="svc-body">
-      <div class="offer-stars">${"★".repeat(5).split("").map(s=>`<span class="offer-star">${s}</span>`).join("")}</div>
+      <div class="offer-ribbon">🌟 ${t("offerLabel")}</div>
+      <div class="offer-stars">${"★★★★★".split("").map(s=>`<span class="offer-star">${s}</span>`).join("")}</div>
       <h3 class="offer-card-title"><span>${svc.name[lang]}</span></h3>
       <div class="offer-saving">✦ ${t("offerSaving")}</div>
       <p class="svc-desc">${svc.desc[lang]}</p>
@@ -364,7 +364,7 @@ function renderOffer(svc){
           <ul class="benefits-list">${svc.benefits[lang].map(b=>`<li>${b}</li>`).join("")}</ul>
         </div>
       </div>
-      <div class="svc-actions" style="margin-top:16px">
+      <div class="svc-actions">
         <button class="pill-btn add-btn" data-id="${svc.id}">${t("addToCart")}</button>
         <button class="btn-glow book-btn" data-id="${svc.id}">${t("bookNow")}</button>
       </div>
