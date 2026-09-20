@@ -2,10 +2,10 @@
    ⚙️ CONFIG
    ═══════════════════════════════ */
 const CONFIG = {
-  whatsappNumber: "201000000000",
+  whatsappNumber: "201041616442",
   facebook:  "https://facebook.com/sola.skincare",
   instagram: "https://instagram.com/sola.skincare",
-  phone:     "+20 100 000 0000",
+  phone:     "+20 1041616442",
   email:     "hello@solaskincare.com",
 };
 
