@@ -212,61 +212,82 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
 .svc-actions .pill-btn{flex:1;justify-content:center;font-size:12.5px;padding:9px 10px;}
 .svc-actions .btn-glow{flex:1;min-width:0;height:2.5em;font-size:13px;}
 
-/* ═══════════════════════════════════════
-   ✨ OFFER CARD — full-width, special
-   ═══════════════════════════════════════ */
+/* ══════════════════════════════
+   ✨ OFFER CARD — mobile-first
+   ══════════════════════════════ */
+/* Base: column (mobile) */
 .service-card.offer-card{
   grid-column:1/-1;
-  flex-direction:row;
+  flex-direction:column;
   border:2px solid transparent;
   background:
     linear-gradient(var(--surface),var(--surface)) padding-box,
     linear-gradient(135deg,#d4af37 0%,#f8d56a 40%,#d4af37 70%,#f8d56a 100%) border-box;
-  box-shadow:0 8px 48px rgba(212,175,55,.2), var(--glow-card);
+  box-shadow:0 8px 48px rgba(212,175,55,.18),var(--glow-card);
   animation:goldShimmer 4s ease-in-out infinite;
-  overflow:visible;
+  overflow:hidden;
 }
 @keyframes goldShimmer{
   0%,100%{box-shadow:0 8px 40px rgba(212,175,55,.18),var(--glow-card);}
-  50%{box-shadow:0 12px 56px rgba(212,175,55,.38),0 4px 24px rgba(214,58,121,.2);}
+  50%{box-shadow:0 14px 60px rgba(212,175,55,.4),0 4px 24px rgba(214,58,121,.2);}
 }
-.offer-card .svc-media{width:42%;flex:none;height:auto;min-height:300px;border-radius:var(--r) 0 0 var(--r);}
-[dir="rtl"] .offer-card .svc-media{border-radius:0 var(--r) var(--r) 0;}
-.offer-card .svc-media::after{border-radius:var(--r) 0 0 var(--r);}
-[dir="rtl"] .offer-card .svc-media::after{border-radius:0 var(--r) var(--r) 0;}
-.offer-card:hover .svc-media{border-radius:var(--r) 0 0 var(--r);}
-.offer-card .svc-body{flex:1;padding:28px 28px 28px;}
-.offer-card .svc-desc{font-size:14.5px;max-width:48ch;}
-.offer-card .svc-actions .btn-glow{height:3em;font-size:14px;}
-.offer-card .svc-actions .pill-btn{height:3em;font-size:13px;}
-/* Offer ribbon */
-.offer-ribbon{
-  position:absolute;top:18px;inset-inline-start:calc(42% + 14px);z-index:3;
-  background:linear-gradient(135deg,#d4af37,#f8d56a);
-  color:#3a1526;font-weight:800;font-size:11.5px;font-family:var(--font-d);
-  padding:5px 14px;border-radius:999px;
-  box-shadow:0 3px 12px rgba(212,175,55,.5);
-  white-space:nowrap;letter-spacing:.3px;
-}
-[dir="rtl"] .offer-ribbon{inset-inline-start:auto;inset-inline-end:calc(42% + 14px);}
-/* Offer price badge - gold */
+/* Image: full width strip on mobile */
+.offer-card .svc-media{width:100%;height:220px;flex:none;}
+/* Gold price badge */
 .offer-card .svc-price-badge{
   background:linear-gradient(135deg,#d4af37,#f8d56a);
-  color:#3a1526;
-  box-shadow:var(--gold-glow);
-  font-size:16px;
-  padding:8px 18px;
+  color:#3a1526;box-shadow:var(--gold-glow);font-size:15px;padding:7px 16px;
 }
-/* Offer title */
-.offer-card .svc-title-overlay{display:none;}/* title is in body for offer */
-.offer-card-title{font-family:var(--font-d);font-size:24px;color:var(--text);margin-bottom:4px;}
-.offer-card-title span{background:linear-gradient(135deg,#d4af37,var(--accent-2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-/* Stars decoration */
-.offer-stars{display:flex;gap:4px;margin-bottom:8px;}
+/* Ribbon — static inside .svc-body, NOT absolutely positioned */
+.offer-ribbon{
+  display:inline-flex;align-items:center;gap:6px;
+  background:linear-gradient(135deg,#d4af37,#f8d56a);
+  color:#3a1526;font-weight:800;font-size:12px;font-family:var(--font-d);
+  padding:5px 14px;border-radius:999px;
+  box-shadow:0 3px 12px rgba(212,175,55,.45);
+  width:fit-content;flex-shrink:0;
+}
+/* Body */
+.offer-card .svc-body{
+  padding:18px 18px 20px;
+  display:flex;flex-direction:column;gap:8px;flex:1;
+}
+.offer-card-title{font-family:var(--font-d);font-size:20px;color:var(--text);}
+.offer-card-title span{
+  background:linear-gradient(135deg,#d4af37,var(--accent-2));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.offer-stars{display:flex;gap:4px;}
 .offer-star{color:var(--gold);font-size:14px;}
-/* Savings badge */
-.offer-saving{display:inline-flex;align-items:center;gap:6px;background:color-mix(in srgb,#d4af37 15%,var(--bg-soft));border:1.5px solid color-mix(in srgb,#d4af37 40%,var(--border));border-radius:999px;padding:5px 14px;font-size:12.5px;font-weight:700;color:#7a5c00;margin-bottom:4px;}
+.offer-saving{
+  display:inline-flex;align-items:center;gap:6px;
+  background:color-mix(in srgb,#d4af37 12%,var(--bg-soft));
+  border:1.5px solid color-mix(in srgb,#d4af37 35%,var(--border));
+  border-radius:999px;padding:5px 14px;
+  font-size:12.5px;font-weight:700;color:#7a5c00;width:fit-content;
+}
 :root[data-theme="dark"] .offer-saving{color:var(--gold-mid);}
+.offer-card .svc-desc{font-size:13.5px;max-width:100%;}
+/* Actions: stacked on mobile */
+.offer-card .svc-actions{flex-direction:column;gap:8px;margin-top:4px;}
+.offer-card .svc-actions .pill-btn,
+.offer-card .svc-actions .btn-glow{
+  width:100%;height:2.8em;min-width:0;justify-content:center;
+}
+
+/* Desktop (≥760px): horizontal layout */
+@media(min-width:760px){
+  .offer-card{flex-direction:row;}
+  .offer-card .svc-media{
+    width:42%;height:auto;min-height:320px;flex:none;
+  }
+  .offer-card .svc-body{padding:26px 28px 26px;}
+  .offer-card-title{font-size:26px;}
+  .offer-card .svc-desc{font-size:14.5px;}
+  .offer-card .svc-actions{flex-direction:row;}
+  .offer-card .svc-actions .btn-glow{height:3em;font-size:14px;width:auto;flex:1;}
+  .offer-card .svc-actions .pill-btn{height:3em;width:auto;flex:1;}
+}
 
 /* ══ FOOTER ══ */
 .site-footer{background:var(--bg-soft);border-top:1px solid var(--border);padding-block:38px 24px;margin-top:20px;}
@@ -350,91 +371,34 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
 .toast.show{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0);}
 
 /* ══ RESPONSIVE ══ */
-@media(max-width:900px){
-  .offer-card{flex-direction:column;}
-  .offer-card .svc-media{width:100%;min-height:220px;border-radius:var(--r) var(--r) 0 0!important;}
-  .offer-card .svc-media::after{border-radius:var(--r) var(--r) 0 0!important;}
-  .offer-ribbon{inset-inline-start:14px!important;inset-inline-end:auto!important;top:14px;}
-  [dir="rtl"] .offer-ribbon{inset-inline-start:auto!important;inset-inline-end:14px!important;}
+@media(max-width:860px){
+  .about-inner{grid-template-columns:1fr;}
+  .about-card{order:-1;}
+  .services-grid{grid-template-columns:repeat(auto-fill,minmax(260px,1fr));}
 }
-@media(max-width:860px){.about-inner{grid-template-columns:1fr;}.about-card{order:-1;}.services-grid{grid-template-columns:repeat(auto-fill,minmax(260px,1fr));}}
 @media(max-width:720px){
-  .main-nav{position:fixed;top:64px;inset-inline:16px;background:var(--surface);border:1px solid var(--border);border-radius:18px;flex-direction:column;padding:16px 20px;gap:14px;box-shadow:var(--glow-soft);transform:translateY(-12px);opacity:0;visibility:hidden;pointer-events:none;transition:all .3s;}
+  .main-nav{
+    position:fixed;top:64px;inset-inline:16px;
+    background:var(--surface);border:1px solid var(--border);border-radius:18px;
+    flex-direction:column;padding:16px 20px;gap:14px;
+    box-shadow:var(--glow-soft);
+    transform:translateY(-12px);opacity:0;visibility:hidden;pointer-events:none;transition:all .3s;
+  }
   .main-nav.open{transform:translateY(0);opacity:1;visibility:visible;pointer-events:auto;}
   .hamburger{display:flex;}
 }
 @media(max-width:520px){
   .services-grid{grid-template-columns:1fr;}
-  .hours-card,.address-card{flex-direction:row;}
   .svc-actions{flex-direction:column;}
+  .svc-actions .pill-btn,.svc-actions .btn-glow{width:100%;min-width:0;}
 }
-
-/* ══════════════════════════════════════
-   OFFER CARD — Mobile Responsive Patches
-   ══════════════════════════════════════ */
-
-/* Fix hover border-radius on desktop for both LTR & RTL */
-.offer-card:hover .svc-media,
-[dir="ltr"] .offer-card:hover .svc-media {
-  border-radius: var(--r) 0 0 var(--r);
-}
-[dir="rtl"] .offer-card:hover .svc-media {
-  border-radius: 0 var(--r) var(--r) 0;
-}
-
-/* ══════════════════════════════════════
-   OFFER CARD — Full Responsive Coverage
-   ══════════════════════════════════════ */
-
-/* ≤ 900px: stack vertically */
-@media (max-width: 900px) {
-  .offer-card { flex-direction: column; overflow: hidden; }
-
-  .offer-card .svc-media {
-    width: 100% !important; height: 240px; min-height: unset;
-    border-radius: var(--r) var(--r) 0 0 !important;
-    flex: none;
-  }
-  .offer-card .svc-media::after {
-    border-radius: var(--r) var(--r) 0 0 !important;
-  }
-  /* Ribbon & price badge go back inside the image */
-  .offer-ribbon {
-    inset-inline-start: 14px !important;
-    inset-inline-end: auto !important;
-    top: 14px !important;
-  }
-  [dir="rtl"] .offer-ribbon {
-    inset-inline-start: auto !important;
-    inset-inline-end: 14px !important;
-  }
-  /* Fix hover border-radius for stacked layout */
-  .offer-card:hover .svc-media {
-    border-radius: var(--r) var(--r) 0 0 !important;
-  }
-  .offer-card .svc-body { padding: 20px 20px 22px; }
-  .offer-card .svc-desc { max-width: 100%; font-size: 14px; }
-}
-
-/* ≤ 600px: tighten body + stack actions */
-@media (max-width: 600px) {
-  .offer-card .svc-media { height: 210px; }
-  .offer-card-title { font-size: 20px; }
-  .offer-card .svc-actions { flex-direction: column; }
-  .offer-card .svc-actions .pill-btn,
-  .offer-card .svc-actions .btn-glow {
-    width: 100%; height: 2.8em; min-width: 0;
-  }
-}
-
-/* ≤ 380px: very small phones */
-@media (max-width: 380px) {
-  .offer-card .svc-media { height: 180px; }
-  .offer-card-title { font-size: 17px; }
-  .offer-card .svc-body { padding: 14px 14px 18px; }
-  .tier-chip { padding: 5px 10px; font-size: 11.5px; }
-  .svc-actions { flex-direction: column; }
-  .svc-actions .pill-btn, .svc-actions .btn-glow {
-    width: 100%; min-width: 0;
-  }
+@media(max-width:420px){
+  .hours-card{gap:10px;padding:12px 14px;}
+  .address-card{padding:12px 14px;}
+  .tier-chip{padding:5px 10px;font-size:11.5px;}
+  .hero-logo,.hero-logo-wrap{width:110px;height:110px;}
+  .hero-title{font-size:22px;}
+  .offer-card .svc-media{height:180px;}
+  .offer-card-title{font-size:17px;}
+  .offer-card .svc-body{padding:14px 14px 16px;}
 }
